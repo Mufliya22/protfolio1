@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mufliya | Portfolio</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- ALL CSS HERE -->
+    <style>
+        /* ====== RESET ====== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0f172a;
+            color: #e5e7eb;
+            line-height: 1.6;
+        }
+
+        /* ====== VARIABLES ====== */
+        :root {
+            --bg-main: #0f172a;
+            --bg-alt: #020617;
+            --card-bg: #020617;
+            --accent: #38bdf8;
+            --accent-soft: rgba(56, 189, 248, 0.1);
+            --text-main: #e5e7eb;
+            --text-muted: #9ca3af;
+            --border-subtle: rgba(148, 163, 184, 0.2);
+            --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.8);
+            --radius-lg: 18px;
+            --radius-xl: 28px;
+        }
+
+        /* ====== GLOBAL LAYOUT ====== */
+        body {
+            background: radial-gradient(circle at top, #1e293b 0, #020617 55%, #000 100%);
+            color: var(--text-main);
+        }
+
+        .section {
+            padding: 80px 7%;
+        }
+
+        .section-alt {
+            background: radial-gradient(circle at top, rgba(56, 189, 248, 0.05) 0, transparent 60%);
+        }
+
+        /* ====== HEADER ====== */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 7%;
+            backdrop-filter: blur(18px);
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.75));
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 1.8rem;
+        }
+
+        .nav-link {
+            font-size: 0.95rem;
+            text-decoration: none;
+            color: var(--text-muted);
+            position: relative;
+            padding-bottom: 4px;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 2px;
+            width: 0%;
+            background: linear-gradient(90deg, #38bdf8, #a855f7);
+            border-radius: 999px;
+            transition: width 0.25s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-main);
+        }
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        /* Mobile menu button */
+        .menu-toggle {
+            width: 26px;
+            height: 20px;
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .menu-toggle span {
+            height: 2px;
+            background: var(--text-main);
+            border-radius: 999px;
+        }
+
+        /* ====== HERO SECTION ====== */
+        .hero {
+            min-height: 85vh;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            align-items: center;
+            gap: 3.5rem;
+        }
+
+        .hero-tag {
+            font-size: 0.9rem;
+            color: var(--accent);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 0.9rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 3.2vw, 3.4rem);
+            margin-bottom: 0.7rem;
+        }
+        .accent {
+            background: linear-gradient(90deg, #38bdf8, #a855f7);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-text {
+            color: var(--text-muted);
+            max-width: 540px;
+            font-size: 0.98rem;
+            margin-bottom: 1.7rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* Buttons */
+        .btn {
+            border-radius: 999px;
+            padding: 0.75rem 1.6rem;
+            font-size: 0.95rem;
+            border: 1px solid transparent;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s;
+        }
+
+        .btn.primary {
+            background: linear-gradient(135deg, #38bdf8, #a855f7);
+            box-shadow: 0 12px 25px rgba(56, 189, 248, 0.35);
+            color: #0b1120;
+            font-weight: 600;
+        }
+        .btn.primary:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn.outline {
+            border-color: var(--border-subtle);
+            background: transparent;
+            color: var(--text-main);
+        }
+        .btn.outline:hover {
+            background: rgba(15, 23, 42, 0.7);
+        }
+
+        /* Hero image side */
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .profile-circle {
+            width: 260px;
+            height: 260px;
+            border-radius: 999px;
+            padding: 5px;
+            background: conic-gradient(from 200deg, #38bdf8, #a855f7, #22c55e, #38bdf8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .profile-circle img {
+            width: 100%;
+            height: 100%;
+            border-radius: 999px;
+            object-fit: cover;
+            border: 4px solid #020617;
+        }
+
+        .hero-card {
+            position: absolute;
+            bottom: 0;
+            right: 10%;
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: 16px;
+            padding: 0.7rem 1rem;
+            border: 1px solid var(--border-subtle);
+            backdrop-filter: blur(10px);
+            font-size: 0.8rem;
+            max-width: 220px;
+        }
+        .hero-card-title {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* ====== SECTION HEADER ====== */
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.8rem;
+        }
+        .section-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* ====== ABOUT SECTION ====== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .about-grid h3 {
+            margin-bottom: 0.6rem;
+            font-size: 1.2rem;
+        }
+
+        .about-grid p {
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .about-list {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+        .about-list li {
+            margin-bottom: 0.45rem;
+            font-size: 0.93rem;
+        }
+
+        /* Skills */
+        .skills {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .skill-item span {
+            font-size: 0.9rem;
+        }
+
+        .skill-bar {
+            margin-top: 0.25rem;
+            width: 100%;
+            height: 8px;
+            border-radius: 999px;
+            background: rgba(148, 163, 184, 0.3);
+            overflow: hidden;
+        }
+        .skill-bar > div {
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #38bdf8, #a855f7);
+        }
+
+        /* ====== EDUCATION ====== */
+        .edu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .edu-card {
+            display: block;
+            padding: 1rem 1.2rem;
+            border-radius: 16px;
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.7);
+            transition: transform 0.15s ease, box-shadow 0.15s ease,
+                border-color 0.15s ease;
+            cursor: pointer;
+        }
+
+        .edu-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .edu-card p {
+            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+            color: #9ca3af;
+        }
+
+        .edu-year {
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .edu-note {
+            font-size: 0.8rem;
+            color: #38bdf8;
+        }
+
+        .edu-card:hover {
+            transform: translateY(-3px);
+            border-color: #38bdf8;
+            box-shadow: 0 16px 35px rgba(56, 189, 248, 0.35);
+        }
+
+        /* ====== ACHIEVEMENTS ====== */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .achievement-card {
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .achievement-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .achievement-body {
+            padding: 1rem 1.1rem 1.2rem;
+        }
+
+        .achievement-body h3 {
+            font-size: 1.02rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .achievement-body p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+        }
+
+        .achievement-tag {
+            font-size: 0.78rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+
+        /* ====== PROJECTS ====== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .project-card {
+            background: rgba(15, 23, 42, 0.9);
+            padding: 1.2rem 1.3rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-soft);
+            font-size: 0.93rem;
+        }
+
+        .project-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+        .project-card p {
+            color: var(--text-muted);
+            margin-bottom: 0.6rem;
+        }
+
+        .project-card ul {
+            list-style: none;
+        }
+        .project-card li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* ====== CONTACT ====== */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .contact-form {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 1.3rem 1.4rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            margin-bottom: 0.3rem;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.65rem 0.75rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-subtle);
+            background: rgba(15, 23, 42, 0.9);
+            color: var(--text-main);
+            font-size: 0.9rem;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-status {
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+
+        .contact-info h3 {
+            margin-bottom: 0.6rem;
+        }
+        .contact-info p,
+        .contact-info li {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .contact-info ul {
+            list-style: none;
+            margin-top: 0.5rem;
+            padding-left: 0;
+        }
+        .contact-info li {
+            margin-bottom: 0.4rem;
+        }
+
+        .contact-links a {
+            color: #38bdf8;
+            text-decoration: none;
+        }
+        .contact-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* ====== BACK TO TOP ====== */
+        .back-to-top {
+            position: fixed;
+            bottom: 18px;
+            right: 18px;
+            width: 38px;
+            height: 38px;
+            border-radius: 999px;
+            border: none;
+            background: rgba(15, 23, 42, 0.9);
+            color: var(--text-main);
+            box-shadow: var(--shadow-soft);
+            cursor: pointer;
+            display: none;
+        }
+
+        /* ====== FOOTER ====== */
+        .footer {
+            padding: 1rem 7%;
+            border-top: 1px solid var(--border-subtle);
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 960px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: left;
+                padding-top: 100px;
+            }
+
+            .hero-image {
+                order: -1;
+                margin-bottom: 1.5rem;
+            }
+
+            .about-grid,
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding-inline: 5%;
+            }
+
+            .nav {
+                position: absolute;
+                top: 58px;
+                right: 5%;
+                flex-direction: column;
+                background: rgba(15, 23, 42, 0.98);
+                padding: 0.9rem 1.1rem;
+                border-radius: 16px;
+                border: 1px solid var(--border-subtle);
+                min-width: 180px;
+                display: none;
+            }
+            .nav.open {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .section {
+                padding-inline: 5%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .profile-circle {
+                width: 220px;
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Navbar -->
+    <header class="header">
+        <div class="logo">M<span>Portfolio</span></div>
+
+        <nav class="nav" id="navMenu">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#education" class="nav-link">Education</a>
+            <a href="#achievements" class="nav-link">Achievements</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+
+        <div class="header-right">
+            <!-- only menu for mobile -->
+            <div class="menu-toggle" id="menuToggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero section">
+        <div class="hero-content">
+            <h1>Hi, I'm <span class="accent">Mufliya Kaunen</span></h1>
+            <p class="hero-tag">Computer Science Student Web Developer | AI Enthusiast</p>
+            <p class="hero-text">
+                I'm a Computer Science student interested in web development, problem solving,
+                and building real-world projects. This portfolio showcases my skills,
+                achievements, and the work I’ve done during my academic journey.
+            </p>
+        </div>
+
+        <div class="hero-image">
+            <div class="profile-circle">
+                <!-- 🔁 Replace src with your own photo file -->
+                <img src="WhatsApp Image 2025-12-07 at 7.42.11 PM.jpeg" alt="Mufliya Kaunen portrait">
+            </div>
+            <div class="hero-card">
+                <p class="hero-card-title">Current Focus</p>
+                <p class="hero-card-text">Learning full-stack development & building strong fundamentals.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="section-header">
+            <h2>About Me</h2>
+            <p>A short introduction about who I am and what I do</p>
+        </div>
+
+        <div class="about-grid">
+            <div>
+                <h3>Who am I?</h3>
+                <p>
+                    I'm <strong>Mufliya Kaunen</strong>, a Computer Science student with a passion
+                    for web development, UI/UX, Exlporing AI and building useful applications.
+                </p>
+                <p>
+                    I enjoy learning new technologies, working on projects, and continuously
+                    improving my problem-solving skills. I believe in writing clean, readable code
+                    and designing simple, user-friendly interfaces.
+                </p>
+                <ul class="about-list">
+                    <li>🎓 Degree: B.E / B.Tech in CSE</li>
+                    <li>📍 Location: Vijaypura</li>
+                    <li>💻 Interests: Web dev, UI/UX, Exploring AI</li>
+                    <li>🗣️ Strengths: Consistency, dedication, quick learning</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3>Skills</h3>
+                <div class="skills">
+                    <div class="skill-item">
+                        <span>HTML & CSS</span>
+                        <div class="skill-bar"><div style="width: 85%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>JavaScript</span>
+                        <div class="skill-bar"><div style="width: 70%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>Python </span>
+                        <div class="skill-bar"><div style="width: 75%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>Streamlit </span>
+                        <div class="skill-bar"><div style="width: 75%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>C programming</span>
+                        <div class="skill-bar"><div style="width: 75%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>Communication & Teamwork</span>
+                        <div class="skill-bar"><div style="width: 90%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>Java basics programming</span>
+                        <div class="skill-bar"><div style="width: 75%"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section (card opens LinkedIn) -->
+    <section id="education" class="section section-alt">
+        <div class="section-header">
+            <h2>Education</h2>
+            <p>Click the card to view details on LinkedIn</p>
+        </div>
+
+        <div class="edu-grid">
+            <a href="https://www.linkedin.com/in/mufliya-kaunen-622150322?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+               class="edu-card"
+               target="_blank"
+               rel="noopener noreferrer">
+                <h3>Pre University education</h3>
+                <p>vidya chetana college , Lingsugur</p>
+                <p> score : 91.16%</p>
+                <span class="edu-year">2021 – 2023</span>
+                <span class="edu-note">View full profile on LinkedIn ↗</span>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- Achievements & Certificates Section -->
+    <section id="achievements" class="section">
+        <div class="section-header">
+            <h2>Achievements & Certificates</h2>
+            <p>Some of the milestones and recognitions I’ve received</p>
+        </div>
+
+        <div class="achievements-grid">
+            <!-- Achievement 1 -->
+            <article class="achievement-card">
+                <!-- 🔁 Replace with your certificate image path -->
+                <img src="WhatsApp Image 2025-12-07 at 7.18.24 PM.jpeg" alt="NPTEL Certificate">
+                <div class="achievement-body">
+                    <h3>NPTEL – Artificial Intelligence: Concepts and Techniques</h3>
+                    <p>Successfully completed the NPTEL online certification course on Artificial Intelligence: Concepts and Techniques.</p>
+                    <span class="achievement-tag">Online Course</span>
+                </div>
+            </article>
+
+            <!-- Achievement 2 -->
+            <article class="achievement-card">
+                <!-- 🔁 Replace with your certificate image path -->
+                <img src="WhatsApp Image 2025-04-15 at 12.24.20 PM.jpeg" alt="Hackathon participation">
+                <div class="achievement-body">
+                    <h3>Hackathon</h3>
+                    <p>Participated in coding and problem-solving events, gaining teamwork and real-world problem understanding.</p>
+                    <span class="achievement-tag">Hackathon</span>
+                </div>
+            </article>
+
+            <article class="achievement-card">
+                <!-- 🔁 Replace with your certificate image path -->
+                <img src="WhatsApp Image 2025-12-07 at 8.58.59 PM.jpeg" alt="Workshop participation">
+                <div class="achievement-body">
+                    <h3>Workshop Participation</h3>
+                    <p>Participated in 3 days workshop to enhance skills and knowledge in Artificial Intelligence.</p>
+                    <span class="achievement-tag">Workshop</span>
+                </div>
+            </article>
+
+            <article class="achievement-card">
+                <!-- 🔁 Replace with your certificate image path -->
+                <img src="WhatsApp Image 2025-12-07 at 8.58.58 PM.jpeg" alt="Ideathon participation">
+                <div class="achievement-body">
+                    <h3>Hackathon / Competition Participation</h3>
+                    <p>Participated in coding and problem-solving events, gaining teamwork and real-world problem understanding.</p>
+                    <span class="achievement-tag">Hackathon</span>
+                </div>
+            </article>
+
+            <article class="achievement-card">
+                <!-- 🔁 Replace with your certificate image path -->
+                <img src="WhatsApp Image 2025-04-01 at 6.01.53 PM.jpeg" alt="Quiz Competition">
+                <div class="achievement-body">
+                    <h3>Quiz Competition Participation</h3>
+                    <p>Participated in Quiz competitions to test and improve problem-solving skills.</p>
+                    <span class="achievement-tag">Competition</span>
+                </div>
+            </article>
+
+            <article class="achievement-card">
+                <!-- 🔁 Replace with your certificate image path -->
+                <img src="WhatsApp Image 2025-04-01 at 6.07.37 PM.jpeg" alt="UI/UX course">
+                <div class="achievement-body">
+                    <h3>UI/UX Course</h3>
+                    <p>completed UI/UX course to learn design principles and user experience best practices.</p>
+                    <span class="achievement-tag">Course</span>
+                </div>
+            </article>
+
+            <article class="achievement-card">
+                <!-- 🔁 Replace with your certificate image path -->
+                <img src="WhatsApp Image 2025-08-15 at 7.48.42 PM.jpeg" alt="HTML course">
+                <div class="achievement-body">
+                    <h3>HTML Course</h3>
+                    <p>completed HTML course to learn the basics of web development and markup language.</p>
+                    <span class="achievement-tag">Course</span>
+                </div>
+            </article>
+
+            <article class="achievement-card">
+                <!-- 🔁 Replace with your certificate image path -->
+                <img src="WhatsApp Image 2025-08-15 at 8.40.24 PM.jpeg" alt="Python course">
+                <div class="achievement-body">
+                    <h3>Python Course</h3>
+                    <p>completed Python course to learn the basics of programming and scripting.</p>
+                    <span class="achievement-tag">Course</span>
+                </div>
+            </article>
+
+             <article class="achievement-card">
+                <!-- 🔁 Replace with your certificate image path -->
+                <img src="WhatsApp Image 2025-04-01 at 6.01.53 PM.jpeg" alt="Java basics course">
+                <div class="achievement-body">
+                    <h3>Java Basics Course</h3>
+                    <p>completed Java basics course to learn the fundamentals of programming and object-oriented concepts.</p>
+                    <span class="achievement-tag">Course</span>
+                </div>
+            </article>
+
+            <article class="achievement-card">
+                <!-- 🔁 Replace with your certificate image path -->
+                <img src="WhatsApp Image 2025-12-07 at 9.53.01 PM.jpeg" alt="Web Development intern">
+                <div class="achievement-body">
+                    <h3>Web Development Intern</h3>
+                    <p>completed internship to gain practical experience in web development and enhance coding skills.</p>
+                    <span class="achievement-tag">Internship</span>
+                </div>
+            </article>
+            <!-- Add more cards if you want -->
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section section-alt">
+        <div class="section-header">
+            <h2>Projects</h2>
+            <p>Some work that shows my technical side</p>
+        </div>
+
+        <div class="projects-grid">
+            <article class="project-card">
+                <h3>Smart Student peformance Analysis Dashboard</h3>
+                <p>
+                    A dashboard to upload student marks from Excel and analyse performance using charts and feedback.
+                </p>
+                <ul>
+                    <li>Built using Python and Streamlit.</li>
+                    <li>Highlights most mistaken questions and weak areas.</li>
+                    <li>Generates downloadable reports.</li>
+                </ul>
+            </article>
+
+            <article class="project-card">
+                <h3>Personal Portfolio Website</h3>
+                <p>
+                    This responsive portfolio website designed to showcase my education, skills, projects, and achievements.
+                </p>
+                <ul>
+                    <li>Built with pure HTML, CSS and JavaScript.</li>
+                    <li>Mobile friendly layout.</li>
+                    <li>Integrated LinkedIn and email contact options.</li>
+                </ul>
+            </article>
+
+            <article class="project-card">
+                <h3>Well-being Web App</h3>
+                <p>
+                    A simple web application to track daily habits and mood for improving mental well-being.
+                </p>
+                <ul>
+                    <li>Implemented using python and streamlit</li>
+                    <li>Uses localStorage to store tasks.</li>
+                    <li>Clean and minimal user interface.</li>
+                </ul>
+            </article>
+
+            <article class="project-card">
+                <h3>Language Translation tool</h3>
+                <p>
+                    A web app that translates text between multiple languages (Indian and the global languages) using a translation API.
+                </p>
+                <ul>
+                    <li>Implemented using python and streamlit</li>
+                    <li>Clean and minimal user interface.</li>
+                </ul>
+            </article>
+
+            <article class="project-card">
+                <h3>Interactive quiz Website</h3>
+                <p>
+                    A web-based quiz application that allows users to take quizze.
+                </p>
+                <ul>
+                    <li>Built with pure HTML, CSS and JavaScript.</li>
+                    <li>Mobile friendly layout.</li>
+                    <li></li>
+                </ul>
+            </article>
+        </div>
+    </section>
+
+    
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="section-header">
+            <h2>Contact Me</h2>
+            <p>For opportunities, collaborations, or any queries</p>
+        </div>
+
+        <div class="contact-wrapper">
+
+            <!-- Contact info with clickable links -->
+            <div class="contact-info">
+                <h3>Connect</h3>
+                <p>You can also reach me on:</p>
+                <ul class="contact-links">
+                    <li>
+                        📧 Email:
+                        <a href="mailto:mufliya.kaunen.22.2005@gmail.com">
+                            mufliya.kaunen.22.2005@gmail.com
+                        </a>
+                    </li>
+                    <li>
+                        🔗 LinkedIn:
+                        <a href="https://www.linkedin.com/in/mufliya-kaunen-622150322?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            linkedin.com/in/mufliya-kaunen
+                        </a>
+                    </li>
+                    <!-- Add more if you want -->
+                    <!--
+                    <li>
+                        💻 GitHub:
+                        <a href="https://github.com/your-username" target="_blank">
+                            github.com/your-username
+                        </a>
+                    </li>
+                    -->
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to top -->
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© <span id="year"></span> Mufliya Kaunen • Portfolio</p>
+    </footer>
+
+    <!-- JS -->
+    <script>
+        // ===== YEAR IN FOOTER =====
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // ===== MOBILE MENU TOGGLE =====
+        const menuToggle = document.getElementById("menuToggle");
+        const navMenu = document.getElementById("navMenu");
+
+        if (menuToggle && navMenu) {
+            menuToggle.addEventListener("click", () => {
+                navMenu.classList.toggle("open");
+            });
+
+            // Close menu when clicking a link (mobile)
+            navMenu.querySelectorAll(".nav-link").forEach(link => {
+                link.addEventListener("click", () => {
+                    navMenu.classList.remove("open");
+                });
+            });
+        }
+
+        // ===== ACTIVE NAV LINK ON SCROLL =====
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        window.addEventListener("scroll", () => {
+            const scrollY = window.pageYOffset;
+
+            sections.forEach(current => {
+                const sectionHeight = current.offsetHeight;
+                const sectionTop = current.offsetTop - 90;
+                const sectionId = current.getAttribute("id");
+
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    navLinks.forEach(link => {
+                        link.classList.remove("active");
+                        if (link.getAttribute("href") === `#${sectionId}`) {
+                            link.classList.add("active");
+                        }
+                    });
+                }
+            });
+        });
+
+        // ===== BACK TO TOP BUTTON =====
+        const backToTop = document.getElementById("backToTop");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 400) {
+                backToTop.style.display = "block";
+            } else {
+                backToTop.style.display = "none";
+            }
+        });
+        backToTop.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        // ===== FAKE CONTACT FORM SUBMIT (NO BACKEND) =====
+        const sendMessageBtn = document.getElementById("sendMessageBtn");
+        const formStatus = document.getElementById("formStatus");
+
+        if (sendMessageBtn && formStatus) {
+            sendMessageBtn.addEventListener("click", () => {
+                const name = document.getElementById("name").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const message = document.getElementById("message").value.trim();
+
+                if (!name || !email || !message) {
+                    formStatus.textContent = "Please fill all fields.";
+                    formStatus.style.color = "#f97373";
+                    return;
+                }
+
+                formStatus.textContent = "Message sent (demo only, no backend connected).";
+                formStatus.style.color = "#4ade80";
+            });
+        }
+    </script>
+</body>
+</html>
